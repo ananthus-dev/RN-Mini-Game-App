@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-function PrimaryButton({ children, onPress }) {
+function PrimaryButton({ children, onPress, disabled }) {
 	return (
 		<View style={styles.outerContainer}>
 			<Pressable
@@ -10,9 +10,10 @@ function PrimaryButton({ children, onPress }) {
 				style={({ pressed }) =>
 					pressed
 						? [styles.innerContainer, styles.pressed]
-						: styles.innerContainer
+						: [styles.innerContainer, disabled && styles.disabled]
 				}
 				android_ripple={{ color: "#644202" }}
+				disabled={disabled}
 			>
 				<Text style={styles.buttonText}>{children}</Text>
 			</Pressable>
@@ -39,6 +40,9 @@ const styles = StyleSheet.create({
 	// for adding ripple like effect in ios
 	pressed: {
 		opacity: 0.75,
+	},
+	disabled: {
+		opacity: 0.2,
 	},
 });
 
