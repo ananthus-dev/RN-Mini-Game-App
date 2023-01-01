@@ -11,6 +11,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import GameScreen from "./screens/GameScreen";
 import Colors from "./constants/colors";
+import GameOverScreen from "./screens/GameOverScreen";
 
 export default function App() {
 	const [enteredNumber, setEnteredNumber] = useState("");
@@ -34,6 +35,7 @@ export default function App() {
 
 	if (gameStage === 0) Screen = StartGameScreen;
 	if (gameStage === 1) Screen = GameScreen;
+	if (gameStage === 2) Screen = GameOverScreen;
 
 	return (
 		<LinearGradient
