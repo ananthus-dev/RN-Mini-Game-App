@@ -13,6 +13,12 @@ import GameScreen from "./screens/GameScreen";
 import Colors from "./constants/colors";
 
 export default function App() {
+	const [enteredNumber, setEnteredNumber] = useState("");
+
+	function numberInputHandler(value) {
+		setEnteredNumber(value);
+	}
+
 	const [gameStage, setGameStage] = useState(0);
 
 	function gotoNextStage() {
@@ -21,7 +27,7 @@ export default function App() {
 
 	let Screen;
 
-	const commonProps = { gotoNextStage };
+	const commonProps = { gotoNextStage, enteredNumber, numberInputHandler };
 
 	// if (gameStage === 0) screen = <StartGameScreen {...commonProps} />;
 	// if (gameStage === 1) screen = <GameScreen {...commonProps} />;
@@ -30,7 +36,10 @@ export default function App() {
 	if (gameStage === 1) Screen = GameScreen;
 
 	return (
-		<LinearGradient style={styles.root} colors={[Colors.primary700, Colors.accent500]}>
+		<LinearGradient
+			style={styles.root}
+			colors={[Colors.primary700, Colors.accent500]}
+		>
 			{/* adding a bg image above the linear gradient, but below the other components  */}
 			<ImageBackground
 				source={require("./assets/dice.png")}
