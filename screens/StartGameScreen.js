@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { Alert, StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Title from "../components/ui/Title";
 import Colors from "../constants/colors";
 
 function StartGameScreen({ gotoNextStage, enteredNumber, numberInputHandler }) {
@@ -28,40 +31,36 @@ function StartGameScreen({ gotoNextStage, enteredNumber, numberInputHandler }) {
 	const isEmpty = enteredNumber === "";
 
 	return (
-		<View style={styles.inputContainer}>
-			<TextInput
-				keyboardType="number-pad"
-				style={styles.numberInput}
-				maxLength={2}
-				onChangeText={numberInputHandler}
-				value={enteredNumber}
-			/>
-			<View style={styles.btnsContainer}>
-				<View style={styles.btnContainer}>
-					<PrimaryButton disabled={isEmpty} onPress={resetText}>
-						Reset
-					</PrimaryButton>
+		<View style={styles.rootContainer}>
+			<Title>Guess My Number</Title>
+			<Card>
+				<InstructionText>Enter a Number</InstructionText>
+				<TextInput
+					keyboardType="number-pad"
+					style={styles.numberInput}
+					maxLength={2}
+					onChangeText={numberInputHandler}
+					value={enteredNumber}
+				/>
+				<View style={styles.btnsContainer}>
+					<View style={styles.btnContainer}>
+						<PrimaryButton disabled={isEmpty} onPress={resetText}>
+							Reset
+						</PrimaryButton>
+					</View>
+					<View style={styles.btnContainer}>
+						<PrimaryButton onPress={confirmHandler}>Confirm</PrimaryButton>
+					</View>
 				</View>
-				<View style={styles.btnContainer}>
-					<PrimaryButton onPress={confirmHandler}>Confirm</PrimaryButton>
-				</View>
-			</View>
+			</Card>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	inputContainer: {
-		padding: 16,
+	rootContainer: {
+		flex: 1,
 		marginTop: 100,
-		marginHorizontal: 24,
-		borderRadius: 8,
-		backgroundColor: Colors.primary800,
-		elevation: 4, //for giving shadow in android
-		shadowColor: "black",
-		shadowOffset: { width: 0, height: 2 },
-		shadowRadius: 6,
-		shadowOpacity: 0.25,
 		alignItems: "center",
 	},
 	btnsContainer: {
