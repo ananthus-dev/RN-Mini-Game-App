@@ -10,6 +10,7 @@ import StartGameScreen from "./screens/StartGameScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import GameScreen from "./screens/GameScreen";
+import Colors from "./constants/colors";
 
 export default function App() {
 	const [gameStage, setGameStage] = useState(0);
@@ -29,7 +30,7 @@ export default function App() {
 	if (gameStage === 1) Screen = GameScreen;
 
 	return (
-		<LinearGradient style={styles.root} colors={["#4e0329", "#ddb52f"]}>
+		<LinearGradient style={styles.root} colors={[Colors.primary700, Colors.accent500]}>
 			{/* adding a bg image above the linear gradient, but below the other components  */}
 			<ImageBackground
 				source={require("./assets/dice.png")}
